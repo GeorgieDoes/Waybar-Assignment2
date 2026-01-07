@@ -1,0 +1,11 @@
+@keyframes spin {
+    from { -gtk-icon-transform: rotate(0deg); color: red; font-size: 10px; }
+    to { -gtk-icon-transform: rotate(360deg); color: blue; font-size: 100px; }
+}
+
+#clock {
+    animation-name: spin;
+    animation-duration: 0.01s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}

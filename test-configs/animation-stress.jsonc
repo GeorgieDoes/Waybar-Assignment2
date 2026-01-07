@@ -1,0 +1,8 @@
+{
+    "layer": "top",
+    "modules-left": ["clock"],
+    "clock": {
+        "format": "SPINNING",
+        "interval": 1
+    }
+}

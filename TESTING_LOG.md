@@ -143,3 +143,28 @@
    * *Error:* `(waybar:30740): Gdk-CRITICAL **: ... Unable to create Cairo image surface: invalid value (typically too big)`.
    * *Result:* **Core Dump / Crash**.
      **Status:** 🔴 Failed (Application successfully crashed via Allocation Failure)
+
+## Session 10: New Scenarios Test
+**Date:** 2026-01-07
+**Tester:** User / Copilot
+**Goal:** Verify system stability under edge-case configurations.
+
+### Scenario A: Zombie Processes (Script Timeout)
+**Config:** `test-configs/zombie-script.jsonc` (Sleep 10s, Interval 1s)
+**Result:** Passed.
+- The bar launched successfully.
+- Custom module execution did not block the main interface (asynchronous handling verified).
+- No zombies detected accumulating in the process list during the short run.
+
+### Scenario B: Corrupt Image Data
+**Config:** `test-configs/corrupt-image.jsonc` (Image path = `/dev/urandom`)
+**Result:** Passed (Graceful Failure).
+- Log Output: `CRITICAL **: unhandled exception ... Couldn’t recognize the image file format`.
+- **Verdict:** GTK/GdkPixbuf handled the exception. The application printed critical errors but **did not crash**. It continued running with the broken module invisible.
+
+### Scenario C: CSS Infinite Animation Stress
+**Config:** `test-configs/animation-stress.jsonc` + `css`
+**Result:** Passed.
+- High-speed CSS animations (0.01s duration) ran smoothly.
+- Application resizing logic was triggered repeatedly due to font-size changes in the animation keyframes (`Requested height X is less than minimum...`), causing log spam but no functional failure.
+

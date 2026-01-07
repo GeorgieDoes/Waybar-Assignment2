@@ -1,0 +1,9 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/zombie"],
+    "custom/zombie": {
+        "exec": "sleep 10; echo '{\"text\": \"Brain...\", \"class\": \"zombie\"}'",
+        "return-type": "json",
+        "interval": 1
+    }
+}

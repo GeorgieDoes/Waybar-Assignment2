@@ -1,0 +1,9 @@
+{
+    "layer": "top",
+    "modules-left": ["image"],
+    "image": {
+        "path": "/dev/urandom",
+        "size": 32,
+        "interval": 5
+    }
+}
