@@ -1,0 +1,11 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/recursion"],
+    "include": [
+        "./recursion-bomb.jsonc"
+    ],
+    "custom/recursion": {
+        "exec": "echo 'Infinite Loop'",
+        "interval": 10
+    }
+}

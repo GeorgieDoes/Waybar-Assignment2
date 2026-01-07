@@ -1,0 +1,12 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/crash", "clock"],
+    "custom/crash": {
+        "exec": "echo 'Hello'",
+        "interval": 5,
+        "format": "Bad Type: {:d}" 
+    },
+    "clock": {
+        "format": "Crash Time: {:999999999}" 
+    }
+}
