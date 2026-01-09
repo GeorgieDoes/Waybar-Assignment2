@@ -624,6 +624,7 @@ catch2 = dependency(
 )
 if catch2.found()
     subdir('test')
+    subdir('test-configs/customTest')
 endif
 
 clangtidy = find_program('clang-tidy', required: false)
