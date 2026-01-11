@@ -83,5 +83,21 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     update();
     REQUIRE(!formatted().empty());
   }
+
+  SECTION("Many fast changes") {
+    setMockState(25, false);
+    update();
+    CHECK(formatted() == "25%");
+
+    setMockState(50, false);
+    update();
+    CHECK(formatted() == "50%");
+
+    setMockState(0, true);
+    update();
+    CHECK(formatted() == "[muted]");
+
+    REQUIRE(getUpdateCount() == 3);
+  }
 }
 
