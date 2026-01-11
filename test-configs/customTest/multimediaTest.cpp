@@ -62,5 +62,12 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     REQUIRE(formatted().find("0") != std::string::npos);
     REQUIRE(formatted().find("muted") == std::string::npos);
   }
+
+  SECTION("Maximum volume displays correctly") {
+    setMockState(100, false);
+    update();
+    REQUIRE(formatted().find("100") != std::string::npos);
+    REQUIRE(formatted().find("muted") == std::string::npos);
+  }
 }
 
