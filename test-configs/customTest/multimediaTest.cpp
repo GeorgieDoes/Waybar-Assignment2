@@ -99,5 +99,16 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
 
     REQUIRE(getUpdateCount() == 3);
   }
+
+  SECTION("Does correct update on race-like condition") {
+    setMockState(10, false);
+    setMockState(90, false);
+    setMockState(0, true);
+
+    update();
+
+    REQUIRE(formatted() == "[muted]");
+    REQUIRE(getUpdateCount() == 1);
+  }
 }
 
