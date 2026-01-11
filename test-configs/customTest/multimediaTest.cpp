@@ -45,6 +45,7 @@ class PulseAudioTest : public waybar::modules::Pulseaudio {
     int update_count{0};
 };
 
+// === === === Test cases === === === 
 TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
   SECTION("Muted takes priority") {
     setMockState(50, true);
@@ -52,6 +53,14 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     REQUIRE(getUpdateCount() == 1);
     REQUIRE(formatted().find("muted") != std::string::npos);
     REQUIRE(formatted().find("50") == std::string::npos);
+  }
+
+  SECTION("0% Volume is not muted") {
+    setMockState(0, false);
+    update();
+    REQUIRE(getUpdateCount() == 1);
+    REQUIRE(formatted().find("0") != std::string::npos);
+    REQUIRE(formatted().find("muted") == std::string::npos);
   }
 }
 
