@@ -1,4 +1,3 @@
-/*
 #include <mutex>
 #include <string>
 
@@ -17,4 +16,3 @@ namespace waybar {
 namespace waybar {
     std::mutex &reap_mtx_ref = ::reap_mtx;
 }
-*/

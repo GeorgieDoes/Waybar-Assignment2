@@ -32,8 +32,8 @@ class PulseAudioTest : public waybar::modules::Pulseaudio {
   public:
     PulseAudioTest() : Pulseaudio("pulseaudio", Json::Value()) { }
 
-    void setMockState(unit32_t volume, bool muted) {
-        volume_ = vol;
+    void setMockState(uint32_t volume, bool muted) {
+        volume_ = volume;
         muted_ = muted;
     }
 
@@ -44,4 +44,14 @@ class PulseAudioTest : public waybar::modules::Pulseaudio {
   private:
     int update_count{0};
 };
+
+TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
+  SECTION("Muted takes priority") {
+    setMockState(50, true);
+    update();
+    REQUIRE(getUpdateCount() == 1);
+    REQUIRE(formatted().find("muted") != std::string::npos);
+    REQUIRE(formatted().find("50") == std::string::npos);
+  }
+}
 
