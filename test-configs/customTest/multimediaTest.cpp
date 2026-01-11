@@ -69,5 +69,12 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     REQUIRE(formatted().find("100") != std::string::npos);
     REQUIRE(formatted().find("muted") == std::string::npos);
   }
+
+  SECTION("Muted with 0% still displays muted") {
+    setMockState(0, true);
+    update();
+    REQUIRE(formatted().find("muted") != std::string::npos);
+    REQUIRE(formatted().find("0") == std::string::npos);
+  }
 }
 
