@@ -27,3 +27,8 @@ namespace waybar::modules {
   };
 }
 
+class PulseAudioTest : public waybar::modules::Pulseaudio {
+  public:
+  private:
+};
+
