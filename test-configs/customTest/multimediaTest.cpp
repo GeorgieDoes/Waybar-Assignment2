@@ -110,5 +110,12 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     REQUIRE(formatted() == "[muted]");
     REQUIRE(getUpdateCount() == 1);
   }
+
+  SECTION("1% is not treated as mute") {
+    setMockState(1, false);
+    update();
+    REQUIRE(formatted().find("1") != std::string::npos);
+    REQUIRE(formatted().find("muted") == std::string::npos);
+  }
 }
 
