@@ -76,5 +76,12 @@ TEST_CASE_METHOD(PulseAudioTest, "Audio formatting logic") {
     REQUIRE(formatted().find("muted") != std::string::npos);
     REQUIRE(formatted().find("0") == std::string::npos);
   }
+
+  // Say that the volume somehow overflows or smth
+  SECTION("Invalid volume input handled correctly") {
+    setMockState(UINT32_MAX, false);
+    update();
+    REQUIRE(!formatted().empty());
+  }
 }
 
