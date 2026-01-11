@@ -27,8 +27,21 @@ namespace waybar::modules {
   };
 }
 
+// === === === Test subclass === === ===
 class PulseAudioTest : public waybar::modules::Pulseaudio {
   public:
+    PulseAudioTest() : Pulseaudio("pulseaudio", Json::Value()) { }
+
+    void setMockState(unit32_t volume, bool muted) {
+        volume_ = vol;
+        muted_ = muted;
+    }
+
+    std::string formatted() const { return format(); }
+    void update() override { update_count++; }
+    int getUpdateCount() const { return update_count; }
+
   private:
+    int update_count{0};
 };
 
