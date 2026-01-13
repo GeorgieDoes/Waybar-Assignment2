@@ -1,0 +1,1 @@
+The test session logged in this folder is not the same as the exploritory tests conducted in "test-session".
