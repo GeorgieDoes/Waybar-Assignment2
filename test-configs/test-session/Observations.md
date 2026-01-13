@@ -48,3 +48,5 @@ While Waybar is modular in terms of build configuration and runtime composition,
 Waybar prioritizes runtime integration and performance over testability and isolation. A reasonable trade-off given its role as a system-level status bar, however, it shifts testing from classical unit tests toward:
 - Partial unit tests of internal logic.
 - Integration tests in a real system environment.
+
+All this to say, Waybar is compositionally modular, but architecturally coupled.
